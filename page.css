@@ -1,0 +1,104 @@
+body
+{
+    background-repeat: no-repeat;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #f00000;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: red;
+}
+
+#Form {
+  border-radius: 0px;
+  background-color: #A9A9A9;
+  padding: 20px;
+}
+
+#vessel {
+  border-radius: 0px;
+  background-color: #A9A9A9;
+  padding: 20px;
+}
+
+#output-text {
+  background-color: #ffffff;
+}
+
+.textarea-in {
+	width:100 %;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#navbar {
+	border-radius: 0px;	
+	background-color: #f00000;
+}
+
+.navbar : hover {
+	background-color: red;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #A9A9A9;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: red;
+}
+
+.active {
+  background-color: red;
+}
+
+#description {
+}
+
+#about {
+	border-radius: 0px;
+  	background-color: white;
+  	padding: 20px;
+  	display: none;
+}
+
+#contact {
+	border-radius: 0px;
+  	background-color: white;
+  	padding: 20px;
+  	display: none;
+}
+
+mark {
+  background-color: yellow;
+  color: black;
+}
