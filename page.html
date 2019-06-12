@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>medicmark</title>
+
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename = 'page.css')}}"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+</head>
+
+<body background="">
+	<div class = "container-fuild">
+		
+		<div id="navbar">
+			<ul>
+  				<li><a id = "home-link" href="">Home</a></li>
+ 	 			<li><a id = "about-link" href="">About</a></li>
+
+  				<li style="float:right"><a id = "contact-link" class="active" href="">Contact</a></li>
+				
+			</ul>
+		</div>
+
+	</div>
+		
+	<div id = "description" >
+		<div class = "container">
+		<div id = "about"> 
+			<h3 style="color: red">
+				medicmark
+			</h3>
+
+			<p style="color: black">
+				A web application hosted as a service to help doctors and researches identify relevant information from raw text based on highlighted <b>disease</b>	 names.
+			</p>	
+		</div>
+	</div>
+
+		<div class="container-fuild">
+		<div id = "contact">
+			<p align="right" style="color: black">
+				<b style="color: red">Email</b> :  abhishekrajbhoj38@gmail.com
+			</p>
+		</div>
+		</div>
+	</div>
+
+	<div class = "container-fuild">
+		<img src = "{{url_for('static',filename = 'medic_logo.png')}}"  class = "center" height="150" weight="150">
+	</div>
+	
+	<div class="container-fuild">	
+	<div id = "vessel">
+	</div>
+	</div>
+
+	<br />
+
+	<div id = "Form">
+			<div class="container">
+				<div class="textarea-in">
+					<textarea rows = '5' cols = '140' id = 'input-text'></textarea>
+				</div>
+			</div>
+			
+			<br />
+			
+			<div class="container">
+				<div class="textarea-in">			
+					<input type = 'submit' id = 'submit-button' value = 'Generate'>
+				</div>
+			</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+		<script>
+			
+			$('#submit-button').click(function(event){
+				var input_text = {
+					'text' : $('#input-text').val()
+				}
+
+				$.post("http://127.0.0.1:5000", JSON.stringify(input_text), function(response){
+
+						var element = '<div id="output-text"></div>';
+						
+						var vessel = $("#vessel")
+
+						$(element).appendTo(vessel);
+
+						var html_text = ""
+
+						var word_list = response.json_list
+
+						$.each(word_list, function(i, obj){
+
+							//html_text = html_text + obj.word + " " + obj.pos
+						
+							if(obj.tag == 'B-indications' || obj.tag == 'I-indications'){
+								html_text = html_text + "<mark style='background-color:yellow'>"+obj.word+"</mark> "
+							}
+
+							else{
+								html_text = html_text + obj.word + " "
+							}
+						
+						});
+
+						$("#output-text").html(html_text);
+				});
+			});
+
+			$("#about-link").mouseenter(function(event){
+				
+				$("#about").css("display","block");
+			});
+
+			$("#about-link").mouseleave(function(event){
+				// hide div1
+				$("#about").css("display","none");
+			});
+
+			$("#contact-link").mouseenter(function(event){
+				// show div2
+
+				$("#contact").css("display","block");
+				
+			});
+
+			$("#contact-link").mouseleave(function(event){
+				// hide div2
+
+				$("#contact").css("display","none");
+			});
+
+		</script>
+
+	</div>
+</body>
+</html>
